@@ -5,7 +5,7 @@ namespace Education
 {
     class Program
     {
-        private static List<User> users = new List<User>();
+        private static readonly List<User> Users = new List<User>();
         static void Main(string[] args)
         {
 
@@ -16,10 +16,10 @@ namespace Education
                 switch (input)
                 {
                         case("create"):
-                        users.Add(createUser());
+                        Users.Add(createUser());
                         break;
                         case("list"):
-                            foreach (User user in users)
+                            foreach (User user in Users)
                             {
                                 Console.WriteLine(user.ToString());
                             }
@@ -27,7 +27,10 @@ namespace Education
                         case("math"):
                         math();
                         break;
-                        default:
+                        case("pyramid"):
+                        pyramid();
+                        break;
+                    default:
                         Console.WriteLine("Invalid request");
                         break;
                 }
@@ -119,6 +122,29 @@ namespace Education
 
 
             return false;
+        }
+
+        private static void pyramid()
+        {
+            Console.WriteLine("Enter the size of the pryamid");
+            int size;
+            do
+            {
+                Console.Write("size:");
+
+            } while (!Int32.TryParse(Console.ReadLine(), out size));
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size-i; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (int j = 0; j < i+1; j++)
+                {
+                    Console.Write(" *");
+                }
+                Console.WriteLine();
+            }
         }
     }
 
